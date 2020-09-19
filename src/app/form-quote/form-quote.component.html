@@ -1,0 +1,165 @@
+<h1>Whixat</h1>
+<form [formGroup]="quote">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Company Name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="company_name"
+        formControlName="company_name"
+        id="company_name"
+        ng-model="first"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Address line 1</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="address_line1"
+        formControlName="address_line1"
+        id="address_line1"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Address Line 2</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="address_line2"
+        formControlName="address_line2"
+        id="address_line2"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="email"
+        formControlName="email"
+        id="email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="phone"
+        formControlName="phone"
+        id="phone"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Quote No.</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="quote_no"
+        formControlName="quote_no"
+        id="quote_no"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="date" id="date" />
+    </mat-form-field>
+  </p>
+  <div formArrayName="items">
+    <div
+      *ngFor="let item of itemForms.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Description"
+          formControlName="description"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="quantity" formControlName="quantity" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="pricePerQuantity"
+          formControlName="pricePerQuantity"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="total" formControlName="total" />
+      </mat-form-field>
+      <button mat-raised-button color="warm" (click)="deleteItem(i)">
+        Delete
+      </button>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" (click)="addItem()">
+    Add Item
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <!-- <input
+      type="file"
+      id="avatar"
+      formControlName="avatar"
+      accept="image/png, image/jpeg"
+    />
+  </div> -->
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Invoice</mat-card-title>
+      <mat-card-subtitle>{{ quote.value.date }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div>
+        <p>subtotal <span>12345</span></p>
+        <p>tax1 <span>55</span>%</p>
+        <p>tax2 <span>55</span>%</p>
+      </div>
+      <div>
+        <p>TOTAL <span>49496</span></p>
+      </div>
+      <div>
+        <div>
+          <h2>Bill TO :</h2>
+          <h5>{{ quote.value.address_line1 }}</h5>
+          <p>{{ quote.value.address_line2 }}</p>
+          <p>{{ quote.value.company_name }}</p>
+          <p>{{ quote.value.email }}</p>
+          <p>{{ quote.value.phone }}</p>
+        </div>
+        <div>
+          <h2>Project Description</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
+            blanditiis suscipit! Molestiae in soluta numquam sit ipsum
+            reprehenderit atque doloribus debitis, vitae nostrum quas
+            perferendis quibusdam obcaecati dolor, eum cupiditate?
+          </p>
+        </div>
+      </div>
+      <p>Powered By Our company name</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Download</button>
+      <button mat-button>Send</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
